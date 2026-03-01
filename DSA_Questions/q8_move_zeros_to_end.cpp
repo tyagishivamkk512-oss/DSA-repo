@@ -24,3 +24,16 @@ int main(){
     vector <int> nums = {1,2,0,6,0,0,0,3,8,9,0,13,0};
     moveZeroes(nums);
 }
+/*class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int i = 0;
+        for(int j = 0; j < nums.size(); j++){
+            if(nums[j] != 0){
+                nums[i] = nums[j];
+                i++;
+            }
+        }
+        while(i < nums.size()) nums[i++] = 0;
+    }
+};*/
