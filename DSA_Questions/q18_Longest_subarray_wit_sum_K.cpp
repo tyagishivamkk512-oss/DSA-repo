@@ -14,11 +14,14 @@ int longestsubarray(vector<int>& nums, int k) {
                 if(mpp.find(rem)!=mpp.end()){
                     int len = i-nums[rem];
                 }
+                if(mpp.find(sum)==mpp.end()){
                 mpp[sum] =i;
             }
+        }
         return maxlen;
         
 }
+/*find() function in a map always search for key*/
 
 int main(){
     int k = 3;
