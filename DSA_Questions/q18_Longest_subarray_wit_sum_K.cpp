@@ -3,17 +3,20 @@ using namespace std;
 int longestsubarray(vector<int>& nums, int k) {
         int n = nums.size();
         int sum=0;
-        int len = 0;
+        int maxlen = 0;
+        unordered_map <int ,int> mpp;
         for(int i=0;i<n;i++){
-            sum = 0;
-            for(int j=i;j<n;j++){
-                sum+= nums[j];
+                sum+= nums[i];
                 if(sum ==k){
-                    len = max(len,(j-i+1));
+                    maxlen = max(maxlen,i+1);
                 }
+                int rem = sum - k;
+                if(mpp.find(rem)!=mpp.end()){
+                    int len = i-nums[rem];
+                }
+                mpp[sum] =i;
             }
-        }
-        return len;
+        return maxlen;
         
 }
 
