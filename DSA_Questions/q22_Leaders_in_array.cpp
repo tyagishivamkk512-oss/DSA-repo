@@ -3,17 +3,18 @@ using namespace std;
     vector<int> leaders(vector<int>& arr) {
         vector <int> v;
         int n=arr.size();
-        for(int i=0;i<n;i++){
-            bool a =true;
-            for(int j=i+1;j<n;j++){
-                if(arr[i]<arr[j]){
-                    a = false;
-                    break;
-                }
+        int max = arr[n-1];
+        for(int i=n-1;i>=0;i--){
+            if(max<=arr[i]){
+                v.emplace_back(arr[i]);
+                max = arr[i];
             }
-            if(a){
-                v.push_back(arr[i]);
-            }
+        }
+        int m =v.size();
+        for(int i=0;i<m/2;i++){
+            int temp = v[i];
+            v[i] = v[m-i-1];
+            v[m-i-1] = temp;
         }
         return v;
     }
