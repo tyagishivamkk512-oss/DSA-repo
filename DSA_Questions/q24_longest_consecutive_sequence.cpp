@@ -1,23 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
-bool ls(vector<int>& nums, int k) {
-        for(int i =0;i<nums.size();i++){
-            if(nums[i]==k) return true;
-        } 
-        return false;
-    }
-    int longestConsecutive(vector<int>& nums) {
-        int maxum =1;
-        for(int i =0;i<nums.size();i++){
-            int count =1;
-            int x = nums[i];
-            while(ls(nums,x+1)==true){
+int longestConsecutive(vector<int>& nums) {
+        if(nums.empty()) return 0;
+        sort(nums.begin(),nums.end());
+        int count=1,maxi=1;
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]==nums[i-1]) continue;
+
+            if(nums[i]==nums[i-1]+1){
                 count++;
-                x++;
+                maxi = max(maxi,count); 
             }
-            maxum = max(maxum,count);
+            else{
+                count = 1;
+            }
         }
-        return maxum;
+        return maxi;
     }
 
 int main() {
