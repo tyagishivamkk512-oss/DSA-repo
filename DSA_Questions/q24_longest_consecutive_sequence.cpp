@@ -1,23 +1,24 @@
 #include<bits/stdc++.h>
 using namespace std;
-int longestConsecutive(vector<int>& nums) {
-    unordered_set<int> numSet(nums.begin(), nums.end());
-    int longest = 0;
-
-    for (auto num : numSet){
-        if (numSet.find(num-1)==numSet.end()){
-            int current=num;
-            int length=1;
-
-            while(numSet.find(current + 1)!=numSet.end()) {
-                current++;
-                length++;
-            }
-            longest=max(longest, length);
-        }
+bool ls(vector<int>& nums, int k) {
+        for(int i =0;i<nums.size();i++){
+            if(nums[i]==k) return true;
+        } 
+        return false;
     }
-    return longest;
-}
+    int longestConsecutive(vector<int>& nums) {
+        int maxum =1;
+        for(int i =0;i<nums.size();i++){
+            int count =1;
+            int x = nums[i];
+            while(ls(nums,x+1)==true){
+                count++;
+                x++;
+            }
+            maxum = max(maxum,count);
+        }
+        return maxum;
+    }
 
 int main() {
     vector<int> nums = {100, 4, 200, 1, 3, 2};
