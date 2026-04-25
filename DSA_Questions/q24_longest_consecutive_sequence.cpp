@@ -1,18 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
 int longestConsecutive(vector<int>& nums) {
-        if(nums.empty()) return 0;
-        sort(nums.begin(),nums.end());
-        int count=1,maxi=1;
-        for(int i=1;i<nums.size();i++){
-            if(nums[i]==nums[i-1]) continue;
-
-            if(nums[i]==nums[i-1]+1){
-                count++;
-                maxi = max(maxi,count); 
-            }
-            else{
-                count = 1;
+        int n = nums.size();
+        int maxi=1;
+        unordered_set <int> st;
+        for(int i =0;i<n;i++){
+            st.insert(nums[i]);
+        }
+        for(auto it : st){
+            if(st.find(it - 1)==st.end()){
+                int count = 1;
+                int x = it;
+                while(st.find(x+1)!=st.end()){
+                    count ++;
+                    x++;
+                }
+                maxi = max(count,maxi);
             }
         }
         return maxi;
