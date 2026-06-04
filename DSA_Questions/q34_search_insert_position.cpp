@@ -4,9 +4,6 @@ using namespace std;
 int searchInsert(vector<int>& nums, int target) {
         int low = 0;
         int high = nums.size() - 1;
-        int ans = 0;
-
-        if(nums[high] < target) return high + 1;
 
         while(low <= high){
             int mid = low + (high - low)/2;
@@ -14,7 +11,6 @@ int searchInsert(vector<int>& nums, int target) {
             if(nums[mid] == target) return mid;
 
             else if(nums[mid] > target){
-                ans = mid;
                 high = mid - 1;
             }
             else{
@@ -22,7 +18,7 @@ int searchInsert(vector<int>& nums, int target) {
             }
 
         }
-        return ans;
+        return low;
     }
 
 int main(){
