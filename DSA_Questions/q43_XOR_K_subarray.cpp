@@ -4,17 +4,16 @@ using namespace std;
 int subarraysWithXorK(vector<int>& arr, int k) {
     int n = arr.size();
     int cnt = 0;
-
     for (int i = 0; i < n; i++) {
+        int xr = 0;
         for (int j = i; j < n; j++) {
-            int xr = 0;
-            for (int t = i; t <= j; t++) {
-                xr ^= arr[t];
-            }
+            xr ^= arr[j];
             if (xr == k)
                 cnt++;
         }
     }
+
+    return cnt;
     return cnt;
 }
 
